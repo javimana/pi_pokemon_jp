@@ -1,0 +1,24 @@
+.form {
+    margin-top: 20px;
+    position: fixed; /* Fija el botón en la pantalla */
+    left: 0; /* Coloca el botón en el borde izquierdo */
+    transform: translateY(-50%); /* Ajusta la posición verticalmente */
+    margin-left: 10px; /* Agrega un margen izquierdo para separación */
+    border-radius: 20px;
+    background-color: transparent;
+    border: 0px solid white;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.405);
+    color: white;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    background-color: rgb(255, 0, 0);
+  }
+  
+  .form:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .form:active {
+    transform: translateY(-50%) scale(0.95); /* Aplica un efecto de hundimiento al hacer clic */
+  }

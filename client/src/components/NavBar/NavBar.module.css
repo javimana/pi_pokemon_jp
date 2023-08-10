@@ -1,0 +1,82 @@
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.429); 
+    height: 60px;
+  }
+  
+
+  .button {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 20px; /* Agrega bordes redondeados */
+    background-color: transparent;
+    border: 0px solid white;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.405);
+    color: white;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+    color: black;
+  }
+
+
+  .button:active {
+    transform: translateY(-5%) scale(0.95); /* Aplica un efecto de hundimiento al hacer clic */
+  }
+
+  .opciones {
+    left: 50%;
+    background-color: transparent;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    width: auto;
+    height: 25px;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+
+.opciones:hover {
+  background-color: white;
+  color: black;
+}
+
+.input{
+  width: 120px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+
+.searchButton {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 20px; /* Agrega bordes redondeados */
+  background-color: transparent;
+  border: 0px solid white;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.405);
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  width: auto;
+  height: 35px;
+}
+
+.searchButton:hover {
+  background-color: white;
+  color: black;
+}
+
+
+.searchButton:active {
+  transform: translateY(-5%) scale(0.95); /* Aplica un efecto de hundimiento al hacer clic */
+}

@@ -1,0 +1,38 @@
+.landing {
+  background-image: url("../../components/Images/fondo08.jpg");
+  background-size: cover; /* Hace que la imagen de fondo cubra toda la pantalla */
+  background-position: center; /* Centra la imagen de fondo */
+  background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+  width: 100vw; /* Ancho igual al 100% del viewport */
+  height: 100vh; /* Altura igual al 100% del viewport */
+}
+
+.button {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 18px; /* Ajusta el tamaño de la fuente */
+  font-style:unset;
+  /* ... otros estilos ... */
+  border-radius: 50%; /* Hace el botón circular */
+  width: 86px; /* Cambia el ancho según tus necesidades */
+  height: 86px; /* Cambia la altura según tus necesidades */
+  position: fixed; /* Hace que el botón sea de posición fija */
+  bottom: 20px; /* Ajusta la posición vertical según tus necesidades */
+  right: 20px; /* Ajusta la posición horizontal según tus necesidades */
+  border-style: inset;
+  top: 65.5vh;
+  right: 37.09vw;
+
+  background: linear-gradient(45deg, #ff0000, #fbfafa);
+  border: 1px solid #f4f3f3;
+  transform: translateZ(0); /* Añade efecto tridimensional */
+  transition: transform 0.3s ease-in-out; /* Añade transición al efecto tridimensional */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+    0 4px 20px rgba(255, 255, 255, 0.8); /* Sombra luminosa blanca */
+}
+
+.button:hover {
+  transform: translateZ(-10px); /* Efecto de profundidad al pasar el mouse */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 8px 30px rgba(255, 255, 255, 1); /* Ajusta la sombra al pasar el mouse */
+}
+
+
