@@ -82,6 +82,7 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerOrigin}>
+          <option value="ALL">All</option>
           <option value="A">API</option>
           <option value="B">Database</option>
         </select>
@@ -89,6 +90,7 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerTypes}>
+          <option value="ALL">All</option>
           <option value="normal">normal</option>
           <option value="fighting">fighting</option>
           <option value="flying">flying</option>
@@ -114,6 +116,7 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerQuantity}>
+          <option value="ALL">All</option>
           <option value="ONE">one type</option>
           <option value="TWO">two types</option>
         </select>

@@ -7,7 +7,7 @@ import style from "../Detail/Detail.module.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function Detail(props) {
+export default function Detail() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.Pokemons); //traigo todo el array con todos los pokemones
 
@@ -24,7 +24,6 @@ export default function Detail(props) {
       <Link to="/home">
         <button className={style.buttondetail}>Home</button>
       </Link>
-
 
       <h1 className={style.name}>{pokemonSelected.name}</h1>
 

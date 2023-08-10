@@ -53,10 +53,6 @@ export const getPokemonId = (id) => {
   return async function (dispatch) {
     const apiData = await axios.get(`http://localhost:3001/pokemons/${id}`);
     const pokemon = apiData.data;
-    console.log(pokemon);
-    console.log(
-      "esto imprime getPokemonId, es decir lo que trae apiData, que es el objeto con el pokemon"
-    );
     dispatch({ type: GET_POKEMON_ID, payload: pokemon });
   };
 };
