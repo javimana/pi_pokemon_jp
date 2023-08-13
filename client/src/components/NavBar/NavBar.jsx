@@ -84,6 +84,8 @@ export default function NavBar({ setLoadPokemons }) {
           <option disabled>Por Nombre</option>
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
+          <option value="ALL">All</option>
+
         </select>
       </div>
 
@@ -92,6 +94,7 @@ export default function NavBar({ setLoadPokemons }) {
           <option disabled>Por Ataque</option>
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
+          <option value="ALL">All</option>
         </select>
       </div>
 

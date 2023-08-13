@@ -80,7 +80,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, Pokemons: action.payload };
 
     case ORDER_POKEMONS:
-      const sortedPokemons = [...state.Pokemons].sort((a, b) => {
+      const sortedPokemons = [...state.allPokemons].sort((a, b) => {
         if (action.payload === "A") {
           return a.name.localeCompare(b.name);
         } else if (action.payload === "D") {
@@ -88,19 +88,17 @@ const rootReducer = (state = initialState, action) => {
         }
         return 0;
       });
-      return { ...state, Pokemons: sortedPokemons };
+      return { ...state, Pokemons: action.payload === "ALL" ? [...state.allPokemons] : sortedPokemons };
 
 
     case ORDER_POKEMONS_ATTACK: 
-      let sortedPokemonsAttack= [...state.Pokemons].sort((a, b) => {
+      let sortedPokemonsAttack= [...state.allPokemons].sort((a, b) => {
           return action.payload === "A" ? a.attack - b.attack : b.attack - a.attack;
         });
         return {
           ...state,
-          Pokemons: sortedPokemonsAttack,
+          Pokemons: action.payload === "ALL" ? [...state.allPokemons] :sortedPokemonsAttack,
         };
-
-
 
     case GET_ORIGIN:
       let origin = [];
