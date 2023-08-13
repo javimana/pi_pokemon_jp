@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import style from "../NavBar/NavBar.module.css";
-import { deleteAllPokemons, orderPokemons, getOrigin, getPokemonsType, searchByName, getPokemonsQuantity} from "../../redux/actions";
+import { deleteAllPokemons, orderPokemons, getOrigin, getPokemonsType, searchByName, getPokemonsQuantity,orderPokemonsAttack} from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
@@ -26,6 +26,11 @@ export default function NavBar({ setLoadPokemons }) {
     dispatch(orderPokemons(event.target.value))
   }
 
+
+  const handlerOrderAttack=(event)=>{
+    dispatch(orderPokemonsAttack(event.target.value))
+  }
+
   const handlerOrigin=(event)=>{
     dispatch(getOrigin(event.target.value))
   }
@@ -41,9 +46,10 @@ export default function NavBar({ setLoadPokemons }) {
   setSearchName(event.target.value)
   }
 
+  
   const handleSearchSubmit = () => {
-    console.log(searchName);
     dispatch(searchByName(searchName));
+
   }
   //--------------------------------------------------------------
 
@@ -75,22 +81,34 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerOrder}>
-          <option value="A">Upward</option>
-          <option value="D">Falling</option>
+          <option disabled>Por Nombre</option>
+          <option value="A">Ascendente</option>
+          <option value="D">Descendente</option>
         </select>
       </div>
 
       <div className={style.opciones} >
+        <select onChange={handlerOrderAttack}>
+          <option disabled>Por Ataque</option>
+          <option value="A">Ascendente</option>
+          <option value="D">Descendente</option>
+        </select>
+      </div>
+
+
+
+      <div className={style.opciones} >
         <select onChange={handlerOrigin}>
-          <option value="ALL">All</option>
-          <option value="A">API</option>
-          <option value="B">Database</option>
+          <option disabled>Origen</option>
+          <option value="A">api</option>
+          <option value="B">database</option>
+          <option value="ALL">all</option>
         </select>
       </div>
 
       <div className={style.opciones} >
         <select onChange={handlerTypes}>
-          <option value="ALL">All</option>
+          <option disabled>Tipo</option>
           <option value="normal">normal</option>
           <option value="fighting">fighting</option>
           <option value="flying">flying</option>
@@ -111,20 +129,22 @@ export default function NavBar({ setLoadPokemons }) {
           <option value="fairy">fairy</option>
           <option value="unknown">unknown</option>
           <option value="shadow">shadow</option>
+          <option value="ALL">all</option>
         </select>
       </div>
 
       <div className={style.opciones} >
         <select onChange={handlerQuantity}>
-          <option value="ALL">All</option>
+          <option disabled>Tipos</option>
           <option value="ONE">one type</option>
           <option value="TWO">two types</option>
+          <option value="ALL">all</option>
         </select>
       </div>
 
       
       <input
-          type="text"
+          type="search"
           placeholder="Search by name"
           value={searchName}
           onChange={handleSearchChange}

@@ -1,4 +1,3 @@
-
 import {
   GET_POKEMONS,
   GET_POKEMON_ID,
@@ -9,6 +8,7 @@ import {
   GET_POKEMONS_TYPE,
   SEARCH_POKEMON_BY_NAME,
   GET_POKEMONS_TYPES_QUANTITY,
+  ORDER_POKEMONS_ATTACK,
 } from "./types";
 
 const initialState = {
@@ -20,7 +20,13 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_POKEMON_BY_NAME:
-      return { ...state, Pokemons: action.payload };
+      return {
+        ...state,
+        // Pokemons: Array.isArray(action.payload) ? action.payload : [...state.allPokemons]};
+        Pokemons: Array.isArray(action.payload)
+          ? action.payload
+          : initialState.Pokemons,
+      };
 
     case GET_POKEMONS_TYPES_QUANTITY:
       let filteredPokemonsType = [];
@@ -34,22 +40,38 @@ const rootReducer = (state = initialState, action) => {
           (pokemon) => pokemon.type.length === 2
         );
       }
-      return {...state, Pokemons: action.payload === "ALL" ? [...state.allPokemons]: filteredPokemonsType }
+      return {
+        ...state,
+        Pokemons:
+          action.payload === "ALL"
+            ? [...state.allPokemons]
+            : filteredPokemonsType,
+      };
 
-      // return { ...state, Pokemons: filteredPokemonsType };
+    case GET_POKEMONS_TYPE:
+      console.log(state.allPokemons);
+      let filteredPokemonsByType = [];
+      filteredPokemonsByType = state.allPokemons.filter((pokemon) => {
+        return pokemon.type.includes(action.payload);
+      });
+      console.log(filteredPokemonsByType);
+      return {
+        ...state,
+        Pokemons:
+          action.payload === "ALL"
+            ? [...state.allPokemons]
+            : filteredPokemonsByType,
+      };
 
-      case GET_POKEMONS_TYPE:
-        const filteredPokemonsByType = state.allPokemons.filter((pokemon) => {
-          return pokemon.type.includes(action.payload);
-        });
-
-        return {...state, Pokemons: action.payload === "ALL" ? [...state.allPokemons]: filteredPokemonsByType }
-      
     case CREATE_POKEMON:
       return { ...state, Pokemons: [...state.Pokemons, action.payload] };
 
     case GET_POKEMONS:
-      return { ...state, allPokemons: action.payload, Pokemons: action.payload };
+      return {
+        ...state,
+        allPokemons: action.payload,
+        Pokemons: action.payload,
+      };
 
     case GET_POKEMON_ID:
       return { ...state, selectedPokemon: action.payload };
@@ -68,8 +90,20 @@ const rootReducer = (state = initialState, action) => {
       });
       return { ...state, Pokemons: sortedPokemons };
 
+
+    case ORDER_POKEMONS_ATTACK: 
+      let sortedPokemonsAttack= [...state.Pokemons].sort((a, b) => {
+          return action.payload === "A" ? a.attack - b.attack : b.attack - a.attack;
+        });
+        return {
+          ...state,
+          Pokemons: sortedPokemonsAttack,
+        };
+
+
+
     case GET_ORIGIN:
-      let origin=[];
+      let origin = [];
       if (action.payload === "A") {
         origin = state.allPokemons.filter(
           (element) => element.created === false
@@ -79,7 +113,10 @@ const rootReducer = (state = initialState, action) => {
           (element) => element.created === true
         );
       }
-      return {...state, Pokemons: action.payload === "ALL" ? [...state.allPokemons]: origin }
+      return {
+        ...state,
+        Pokemons: action.payload === "ALL" ? [...state.allPokemons] : origin,
+      };
 
     default:
       return { ...state };

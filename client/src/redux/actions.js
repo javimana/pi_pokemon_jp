@@ -9,6 +9,7 @@ import {
   GET_POKEMONS_TYPE,
   SEARCH_POKEMON_BY_NAME,
   GET_POKEMONS_TYPES_QUANTITY,
+  ORDER_POKEMONS_ATTACK,
 } from "./types";
 
 export const getPokemonsQuantity = (value) => {
@@ -20,11 +21,18 @@ export const getPokemonsQuantity = (value) => {
 export const searchByName = (name) => {
   return async (dispatch) => {
     const url = `http://localhost:3001/pokemons?name=${name}`;
-    
-    const response = await axios.get(url);
-    const pokemons = response.data;
 
-    dispatch({ type: SEARCH_POKEMON_BY_NAME, payload: pokemons });
+    try {
+      const response = await axios.get(url);
+      const pokemons = response.data;
+      if (pokemons === "No se encontró el pokemon") {
+        window.alert("No se encontró el Pokémon.");
+      } else {
+        dispatch({ type: SEARCH_POKEMON_BY_NAME, payload: pokemons });
+      }
+    } catch (error) {
+      window.alert("Pokémon not found or an error occurred.");
+    }
   };
 };
 
@@ -69,6 +77,12 @@ export const orderPokemons = (order) => {
     dispatch({ type: ORDER_POKEMONS, payload: order });
   };
 };
+
+export const orderPokemonsAttack = (attack)=>{
+  return (dispatch)=>{
+    dispatch({type:ORDER_POKEMONS_ATTACK, payload:attack})
+  }
+}
 
 export const getOrigin = (value) => {
   return (dispatch) => {

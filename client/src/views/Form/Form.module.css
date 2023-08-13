@@ -1,24 +1,98 @@
-.form {
-    margin-top: 20px;
-    position: fixed; /* Fija el botón en la pantalla */
-    left: 0; /* Coloca el botón en el borde izquierdo */
-    transform: translateY(-50%); /* Ajusta la posición verticalmente */
-    margin-left: 10px; /* Agrega un margen izquierdo para separación */
-    border-radius: 20px;
-    background-color: transparent;
-    border: 0px solid white;
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.405);
-    color: white;
-    padding: 10px 20px;
-    transition: background-color 0.3s;
-    background-color: rgb(255, 0, 0);
-  }
+.buttonForm {
+  position: fixed; /* Fija el botón en la pantalla */
+  left: 0; /* Coloca el botón en el borde izquierdo */
+  margin-left: 10px; /* Agrega un margen izquierdo para separación */
+  border-radius: 20px;
+  background-color: transparent;
+  border: 0px solid white;
+  box-shadow: 0 6px 4px rgba(0, 0, 0, 0.405);
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  background-color: rgb(255, 0, 0);
+}
+
+.buttonForm:hover {
+  background-color: white;
+  color: black;
+}
+
+.buttonForm:active {
+  transform: scale(0.95); 
+}
+
   
-  .form:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .form:active {
-    transform: translateY(-50%) scale(0.95); /* Aplica un efecto de hundimiento al hacer clic */
-  }
+/* Form.module.css */
+.centeredForm {
+  margin-left: 410px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+  background-color: rgba(144, 129, 10, 0.333); /* Fondo negro transparente */
+  backdrop-filter: blur(10px); /* Agrega un efecto de desenfoque al fondo */
+  border-radius: 10px;
+  box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  color: white;
+}
+
+.formInput{
+  margin-left: auto;
+}
+
+.label{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.formGroup{
+  margin-top: auto;
+}
+/* Otros estilos... */
+
+.customFormSubmit {
+  /* Estilos específicos para el botón formSubmit */
+  background-color: transparent; /* Fondo transparente */
+  color: white; /* Texto en color blanco */
+  border: 2px solid white; /* Borde blanco */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Sombra blanca tenue */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+  margin-top: 15px;
+  height: 30px;
+  width: 200px;
+}
+
+.customFormSubmit {
+  /* ... otros estilos ... */
+  background-color: rgba(255, 0, 0, 0.5); /* Fondo rojo transparente */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 30px; /* Borde redondeado */
+  /* ... otros estilos ... */
+}
+
+.customFormSubmit:hover {
+  background-color: rgba(255, 255, 255, 0.385); /* Cambio de fondo al pasar el mouse */
+  color: rgba(255, 255, 255, 0.9); /* Cambio de color de texto al pasar el mouse */
+  border-radius: 30px; /* Borde redondeado al pasar el mouse */
+}
+
+.title {
+  font-family: 'PokemonFont', sans-serif; /* Aplicar la fuente personalizada */
+  font-size: 36px; /* Tamaño de fuente grande */
+  background-color: rgba(123, 0, 255, 0.538); /* Fondo rojo transparente */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque al fondo */
+  border-radius: 30px; /* Borde redondeado */
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Sombra blanca iluminada */
+  color: white; /* Color del texto */
+  width: 800px; /* Ancho del título */
+  margin-left: 270px;
+  margin-top: 30px;
+  height: 120px;
+}
+
+/* Otros estilos... */

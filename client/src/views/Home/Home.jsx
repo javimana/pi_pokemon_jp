@@ -9,7 +9,7 @@ import style from "./Home.module.css";
 export default function Home() {
   // cuando se monta, que haga el dispatch
   // useEffects()     useDispatch
-  const [loadPokemons, setLoadPokemons] = useState(true); // inicializo el estado en false
+  const [loadPokemons, setLoadPokemons] = useState(false); // inicializo el estado en false
 
   const dispatch = useDispatch();
 

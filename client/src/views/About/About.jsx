@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import style from "./About.module.css";
-import javiImage from "../../components/Images/JAVI.jpeg";
+import javiImage from "../../components/Images/JAVI.png";
 
 const About = () => {
   return (
