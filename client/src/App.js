@@ -7,7 +7,8 @@ import About from "./views/About/About";
 function App() {
   const location = useLocation(); //me muestro en el objeto location en la propiedad pathname donde estas ubicado
 
-  
+  //comentario prueba git flow
+  // segunda prueba
 
   return (
     <div className="App">
