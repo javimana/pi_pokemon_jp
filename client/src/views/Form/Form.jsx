@@ -7,9 +7,10 @@ import axios from "axios";
 import validator from "./validation";
 
 export default function Form() {
-  const dispatch = useDispatch();
-
-  const [pokemonData, setPokemonData] = useState({
+  const dispatch = useDispatch(); 
+  //---------------------------------------------------------------------------------------------------
+  //Inicializo el estado pokemonData con los datos vacíos
+const [pokemonData, setPokemonData] = useState({
     name: "",
     type: [],
     hp: "",
@@ -19,28 +20,35 @@ export default function Form() {
     height: "",
     weight: "",
   });
+  //---------------------------------------------------------------------------------------------------
+  
+  const [availableTypes, setAvailableTypes] = useState([]); // se inicializa availableTypes con un array vacío donde voy a guardar los tipos
+  const [typeSelection, setTypeSelection] = useState("one"); // el estado typeSelection se inicializa en "one" y ese valor se lo paso 
+  const [errors, setErrors] = useState({});// errors es el estado que contiene un objeto con los mensajes de errores
+  const [isButtonDisabled, setButtonDisabled] = useState(true); // es el estado que habilita el boton, si es true está habilitado
 
-  const [availableTypes, setAvailableTypes] = useState([]);
-  const [typeSelection, setTypeSelection] = useState("one");
-  const [errors, setErrors] = useState({});
-  const [isButtonDisabled, setButtonDisabled] = useState(true);
+  // se ejecuta la petición cuando el hook useEffect monta el componente
+  // cuando cargo la pagina en types viene el array con todos los tipos ---> types=['normal', 'fighting', 'flying',...]
+  // realizo la petición a la url http://localhost:3001/types que trae los tipos de la api y los guarda en la bdd
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/type")
+      .get("http://localhost:3001/types")
       .then((response) => {
-        const types = response.data.results.map((type) => type.name);
-        setAvailableTypes(types);
+        const types=response.data;
+        setAvailableTypes(types); // actualizo el estado de availableTypes con todos los tipos de pokemones
+        console.log(types);
       })
       .catch((error) => {
         console.error("Error fetching types:", error);
       });
   }, []);
-
+  //---------------------------------------------------------------------------------------------------
+  
   const handleTypeSelectionChange = (e) => {
-    setTypeSelection(e.target.value);
-    setPokemonData({ ...pokemonData, type: [] });
-    console.log(pokemonData);
+    setTypeSelection(e.target.value); // e.target.value trae el valor del evento, osea "one" o "two". Tambien se usa setTypeSelection para actualizar el estado de typeSelection con estos valores
+    //setPokemonData({ ...pokemonData, type: [] }); // en pokemonData se vacia el array en type 
+    console.log(e.target.value);
   };
 
   const handleTypeChangeOne = (e) => {
@@ -49,54 +57,61 @@ export default function Form() {
     setPokemonData(pokemonData);
     console.log(pokemonData);
   };
-
-  const handlerChange = (e) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
-
-    // Ejecutar la validación solo si el campo tiene algún valor
-    if (fieldValue.trim() !== "") {
-      const fieldErrors = validator({
-        ...pokemonData,
-        [fieldName]: fieldValue,
-      });
-      setErrors({ ...errors, [fieldName]: fieldErrors[fieldName] });
-    }
-
-    setPokemonData({ ...pokemonData, [fieldName]: fieldValue });
-
-    // Verificar si todos los campos están completos
-    const allFieldsCompleted = Object.values(pokemonData).every((value) => {
-      if (Array.isArray(value)) {
-        return value.length > 0;
-      }
-      return value !== "" && value !== 0;
-    });
-
-    setButtonDisabled(!allFieldsCompleted);
-  };
-
+  
+  
   const handleTypeChangeTwo = (e) => {
     console.log(e.target.value);
     if (e.target.name === "FirstType") pokemonData.type[0] = e.target.value;
     if (e.target.name === "SecondType") pokemonData.type[1] = e.target.value;
     console.log(pokemonData);
   };
+  
+  //---------------------------------------------------------------------------------------------------
+
+  const handlerChange = (e) => {
+  const fieldName = e.target.name; //acá viene el nombre de la propiedad. Ej: name:
+  const fieldValue = e.target.value; // acá viene el valor de la propiedad. Ej: "bunca"
+  console.log(pokemonData);
+
+  // Ejecutar la validación solo si el campo tiene algún valor
+  // validator es la funcion que está en validation.js
+  // el trim() elimina los espacios en blanco al prinicipio y final de una string
+  if (fieldValue.trim() !== "") {
+    const fieldErrors = validator({...pokemonData,[fieldName]: fieldValue});
+    // setErrors actualiza el estado errors que es un objeto vacio, fieldErrors es un objeto con mensajes de errores 
+    // o sea que va a quedar asi: errors={name:"mensaje de error"}
+    setErrors({ ...errors, [fieldName]: fieldErrors[fieldName] });
+  }
+    setPokemonData({ ...pokemonData, [fieldName]: fieldValue });// voy actualizando el estado pokemonData con lo que escribe el usuario
+
+    // Verificar si todos los campos están completos
+    // allFieldsCompleted trae un valor booleno, true o false, y si un solo campo esta vacio o es cero devuelve "false"
+    const allFieldsCompleted = Object.values(pokemonData).every((value) => {
+      if (Array.isArray(value)) return value.length > 0; //si la longitud no es cero devuelve "true"
+      return value !== "" && value !== 0; // si el campo no es vacio y no es cero devuelve "true"
+    });
+
+    setButtonDisabled(!allFieldsCompleted);//cambia el estado según lo que traiga allFieldsCompleted
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Validación de campos
-    const formErrors = validator(pokemonData);
+    const formErrors = validator(pokemonData); // trae el objeto con los mensajes de los errores
 
     // Deshabilitar el botón después de crear el Pokémon
     setButtonDisabled(true);
 
+    // si su longitud es cero no tiene errores
     if (Object.keys(formErrors).length === 0) {
       dispatch(createPokemon(pokemonData));
-
-      window.location.reload();
-
+      
+      window.alert("Pokemon creado con éxito");
+      // window.location.reload();
+      
+      setTypeSelection("one")
       setPokemonData({
         name: "",
         type: [],
@@ -107,10 +122,13 @@ export default function Form() {
         height: "",
         weight: "",
       });
+
+      
+      
     } else {
       alert("Por favor, complete los campos requeridos correctamente.");
     }
-    window.alert("Pokemon creado con éxito");
+    
   };
 
   return (
@@ -139,8 +157,8 @@ export default function Form() {
         <div className={style.formGroup}>
           <label className={style.label}>Number of Types</label>
           <select
-            value={typeSelection}
-            onChange={handleTypeSelectionChange}
+            value={typeSelection} // el valor del select viene del typeSelection con "one"
+            onChange={handleTypeSelectionChange} // onChange es un evento se dispara cuando cambia el select
             className={style.formInput}
           >
             <option value="one">One Type</option>
@@ -153,11 +171,7 @@ export default function Form() {
             <label className={style.label}>One Type</label>
             <select onChange={handleTypeChangeOne} className={style.formInput}>
               <option>Selecciona un tipo</option>
-              {availableTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
+              {availableTypes.map((type) => (<option key={type} value={type}> {type}</option>))}
             </select>
           </div>
         )}
@@ -271,9 +285,7 @@ export default function Form() {
           {errors.type && <p className={style.errorText}>{errors.type}</p>}
           {errors.hp && <p className={style.errorText}>{errors.hp}</p>}
           {errors.attack && <p className={style.errorText}>{errors.attack}</p>}
-          {errors.defense && (
-            <p className={style.errorText}>{errors.defense}</p>
-          )}
+          {errors.defense && (<p className={style.errorText}>{errors.defense}</p>)}
           {errors.speed && <p className={style.errorText}>{errors.speed}</p>}
           {errors.height && <p className={style.errorText}>{errors.height}</p>}
           {errors.weight && <p className={style.errorText}>{errors.weight}</p>}

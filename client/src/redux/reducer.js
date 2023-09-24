@@ -15,6 +15,7 @@ const initialState = {
   allPokemons: [],
   Pokemons: [],
   selectedPokemon: null,
+  currentPage:1
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -57,11 +58,7 @@ const rootReducer = (state = initialState, action) => {
       console.log(filteredPokemonsByType);
       return {
         ...state,
-        Pokemons:
-          action.payload === "ALL"
-            ? [...state.allPokemons]
-            : filteredPokemonsByType,
-      };
+        Pokemons: action.payload === "ALL" ? [...state.allPokemons] : filteredPokemonsByType};
 
     case CREATE_POKEMON:
       return { ...state, Pokemons: [...state.Pokemons, action.payload] };

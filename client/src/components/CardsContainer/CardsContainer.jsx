@@ -21,13 +21,7 @@ const CardsContainer = () => {
     const paginationButtons = [];
     for (let i = 1; i <= totalPages; i++) {
       paginationButtons.push(
-        <button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          className={currentPage === i ? style.activePage : ""}
-        >
-          {i}
-        </button>
+        <button key={i} onClick={() => handlePageChange(i)} className={currentPage === i ? style.activePage : style.desactivePage}> {i} </button>
       );
     }
     return paginationButtons;
@@ -43,19 +37,12 @@ const CardsContainer = () => {
   return (
     <div>
       <div className={style.pagination}>
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
+
+        <button className={style.prevNextButton} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}> Previous </button>
+
         {renderPaginationButtons()}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+
+        <button className={style.prevNextButton} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}> Next </button>
       </div>
 
       <div className={style.cardscontainer}>

@@ -8,7 +8,7 @@
 
   .button {
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: 2px;
     margin-right: 2px;
     border-radius: 20px; /* Agrega bordes redondeados */
     background-color: transparent;
@@ -79,4 +79,14 @@
 
 .searchButton:active {
   transform: translateY(-5%) scale(0.95); /* Aplica un efecto de hundimiento al hacer clic */
+}
+
+
+.landingImage {
+  margin-top: 7px;
+  margin-left: 5px;
+  width: 40px; /* Ajusta el tamaño de la imagen */
+  height: 40px; /* Ajusta el tamaño de la imagen */
+  vertical-align: middle; /* Alinea verticalmente la imagen dentro del botón */
+  margin-right: 5px; /* Espacio entre la imagen y el borde derecho del botón */
 }

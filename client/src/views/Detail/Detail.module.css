@@ -45,7 +45,6 @@
 }
 
 .image {
-  margin-top: 10px;
   width: 220px;
   height: 220px;
   border-radius: 200px;
@@ -63,7 +62,42 @@
   font-size: 28px;
   color: white;
   text-shadow: 0 0 10px rgba(67, 199, 211, 0.5);
-  margin-top: -10px; /* Ajusta este valor para elevar o bajar el texto */
+  margin-top: -25px; /* Ajusta este valor para elevar o bajar el texto */
   margin-bottom: 5px;
   font-family: 'PokemonFont', sans-serif;
+}
+
+.typeImage {
+  width: 30px; /* Ajusta el tamaño según lo necesario */
+  height: 30px;
+  border-radius: 50%; /* Para bordes redondeados */
+  margin-top: 5px; /* Ajusta el margen según lo necesario */
+  margin-right: 10px;
+}
+
+
+.typeContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.typeImage {
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: 50px; /* Ajusta el tamaño según tus necesidades */
+}
+
+.typeName {
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: center;
 }

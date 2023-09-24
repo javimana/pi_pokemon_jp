@@ -4,6 +4,9 @@ import { deleteAllPokemons, orderPokemons, getOrigin, getPokemonsType, searchByN
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
+import landingImage from "../Images/landingImage.png";
+
+
 export default function NavBar({ setLoadPokemons }) {
   // const [clearAll, setClearAll]=useState(false)
   const [searchName,setSearchName]=useState("")
@@ -60,9 +63,20 @@ export default function NavBar({ setLoadPokemons }) {
 
   return (
     <div className={style.NavBar}>
+
+      <Link to="/">
+        <img
+          src={landingImage}
+          alt="Landing"
+          className={style.landingImage}
+        />
+      </Link>
+
+
       <Link to="/home">
         <button className={style.button} onClick={handlePokemonsClick}>Pokemons</button>
       </Link>
+
       <Link to="/home">
         <button className={style.button} onClick={handleClearAllClick}>Clear All</button>
       </Link>
@@ -75,15 +89,12 @@ export default function NavBar({ setLoadPokemons }) {
         <button className={style.button}>About</button>
       </Link>
 
-      <Link to="/">
-        <button className={style.button}>Landing</button>
-      </Link>
 
       <div className={style.opciones} >
         <select onChange={handlerOrder}>
-          <option disabled>Por Nombre</option>
-          <option value="A">Ascendente</option>
-          <option value="D">Descendente</option>
+          <option disabled>Name</option>
+          <option value="A">Asc</option>
+          <option value="D">Desc</option>
           <option value="ALL">All</option>
 
         </select>
@@ -91,9 +102,9 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerOrderAttack}>
-          <option disabled>Por Ataque</option>
-          <option value="A">Ascendente</option>
-          <option value="D">Descendente</option>
+          <option disabled>Attack</option>
+          <option value="A">Asc</option>
+          <option value="D">Desc</option>
           <option value="ALL">All</option>
         </select>
       </div>
@@ -102,7 +113,7 @@ export default function NavBar({ setLoadPokemons }) {
 
       <div className={style.opciones} >
         <select onChange={handlerOrigin}>
-          <option disabled>Origen</option>
+          <option disabled>Origin</option>
           <option value="A">api</option>
           <option value="B">database</option>
           <option value="ALL">all</option>
