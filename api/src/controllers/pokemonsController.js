@@ -34,6 +34,21 @@ const createPokemon = async (
   }
   console.log(getRandomInteger());
   const imageUrl = siluetas[getRandomInteger()]; //guarda una url de una imagen
+
+
+  const existingPokemon = await Pokemons.findOne({
+    where: {
+      name: { [Op.iLike]: name } // Op.iLike es para búsqueda 
+    }
+  });
+  
+  console.log(existingPokemon);
+  
+  if (existingPokemon) {
+    throw new Error("¡Ya existe un Pokémon con ese nombre!");
+  }
+  
+
   //el método Pokemons.create me devuelve una promesa por eso le hago await
   const newPokemon = await Pokemons.create({
     name,
@@ -127,7 +142,7 @@ const searchPokemonByName = async (name) => {
 
   let allUrls = [];
 
-  // Usar un bucle for para generar las URLs y agregarlas al array
+  // Usar un for for para generar las URLs y agregarlas al array
   for (let i = 1; i <= 40; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     allUrls.push(url);

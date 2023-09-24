@@ -15,7 +15,6 @@ module.exports = (sequelize) => {
       image: { type: DataTypes.STRING, allowNull: true },
       type: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        // defaultValue: ["normal"],
       },
       hp: {
         type: DataTypes.INTEGER,

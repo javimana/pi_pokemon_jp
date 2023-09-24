@@ -6,6 +6,9 @@ const mainRoutes = require("./routes/index.js");
 
 require("./db.js");
 
+URL_LOCAL_HOST="http://localhost:3000";
+
+
 const server = express();
 
 server.name = "API";
@@ -18,7 +21,7 @@ server.use(morgan("dev"));
 server.use(express.json());
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", URL_LOCAL_HOST); // actualice para que coincida con el dominio desde el que realizará la solicitud
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",

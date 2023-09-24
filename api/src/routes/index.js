@@ -14,4 +14,7 @@ mainRouter.use("/types", pokemonsTypesRoutes);
 mainRouter.use("/pokemons", pokemonsPostRoutes);
 
 
+
+
+
 module.exports = mainRouter;
